@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright © 2017-2019 Cask Data, Inc.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License"); you may not
-  ~ use this file except in compliance with the License. You may obtain a copy of
-  ~ the License at
-  ~
-  ~ http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  ~ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-  ~ License for the specific language governing permissions and limitations under
-  ~ the License.
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  Licensed under the Apache License, Version 2.0
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>wrangler</artifactId>
     <groupId>io.cdap.wrangler</groupId>
+    <artifactId>wrangler</artifactId>
     <version>4.12.0-SNAPSHOT</version>
   </parent>
-  <modelVersion>4.0.0</modelVersion>
 
   <artifactId>wrangler-core</artifactId>
   <name>Wrangler Core</name>
+
+  <properties>
+    <guava.version>31.1-jre</guava.version>
+    <protobuf.version>3.21.12</protobuf.version>
+    <cdap.version>6.7.0</cdap.version>
+    <chlorine.version>1.0.0</chlorine.version>
+    <simmetrics.version>4.1.1</simmetrics.version>
+    <commons-io.version>2.11.0</commons-io.version>
+    <geogson.version>1.4.2</geogson.version>
+    <commons.validator.version>1.7</commons.validator.version>
+    <netty.version>4.1.86.Final</netty.version>
+    <netty-http.version>1.0.3</netty-http.version>
+    <natty.version>0.13</natty.version>
+    <httpdlog-parser.version>6.1</httpdlog-parser.version>
+    <joda-time.version>2.10.14</joda-time.version>
+    <guava.retrying.version>2.0.0</guava.retrying.version>
+    <antlr.version>4.9.2</antlr.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 
   <repositories>
     <repository>
@@ -33,9 +45,7 @@
   </repositories>
 
   <dependencies>
-
-    <!-- Internal -->
-
+    <!-- Internal Dependencies -->
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
@@ -69,8 +79,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Test -->
-
+    <!-- Test Dependencies -->
     <dependency>
       <groupId>io.cdap.cdap</groupId>
       <artifactId>cdap-unit-test</artifactId>
@@ -106,8 +115,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- External -->
-
+    <!-- External Dependencies -->
     <dependency>
       <groupId>com.github.everit-org.json-schema</groupId>
       <artifactId>org.everit.json.schema</artifactId>
@@ -171,213 +179,68 @@
       <version>${guava.retrying.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.esotericsoftware</groupId>
-      <artifactId>kryo</artifactId>
-      <version>4.0.2</version>
-    </dependency>
-    <dependency>
       <groupId>org.antlr</groupId>
-      <artifactId>antlr4</artifactId>
-      <version>${antlr4.version}</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20180813</version>
-    </dependency>
-    <dependency>
-      <groupId>org.unix4j</groupId>
-      <artifactId>unix4j-command</artifactId>
-      <version>${unix4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path</artifactId>
-      <version>${json-path.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.reflections</groupId>
-      <artifactId>reflections</artifactId>
-      <version>${reflections.version}</version>
-    </dependency>
-
-    <!-- Apache -->
-
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi</artifactId>
-      <version>${poi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.poi</groupId>
-      <artifactId>poi-ooxml</artifactId>
-      <version>${poi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>${commons-lang3.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-jexl3</artifactId>
-      <version>${commons-jexl.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>${httpclient.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-csv</artifactId>
-      <version>${commons-csv.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.avro</groupId>
-      <artifactId>avro</artifactId>
-      <version>${avro.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.bouncycastle</groupId>
-      <artifactId>bcprov-jdk15on</artifactId>
-      <version>${bouncycastle.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-math3</artifactId>
-      <version>${commons-math3.version}</version>
-    </dependency>
-
-    <!-- UHN -->
-
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-base</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <!-- These are structure JARs for HL7 v2.1 and 2.5.1 (as an example) -->
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v21</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v22</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v23</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v231</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v24</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v25</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v251</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ca.uhn.hapi</groupId>
-      <artifactId>hapi-structures-v26</artifactId>
-      <version>${hl7.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.cdap.cdap</groupId>
-      <artifactId>cdap-system-app-api</artifactId>
-      <version>${cdap.version}</version>
+      <artifactId>antlr4-runtime</artifactId>
+      <version>${antlr.version}</version>
     </dependency>
   </dependencies>
 
-
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <version>${antlr.version}</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+            <configuration>
+              <arguments>
+                <argument>-visitor</argument>
+                <argument>-long-messages</argument>
+              </arguments>
+              <outputDirectory>${project.build.directory}/generated-sources/antlr</outputDirectory>
+              <packageName>io.cdap.wrangler.grammar</packageName>
+              <sourceDirectory>${project.basedir}/src/main/antlr4</sourceDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+    </plugins>
+
     <resources>
       <resource>
         <directory>src/main/resources</directory>
-        <filtering>true</filtering>
       </resource>
     </resources>
-  <plugins>
-  <!-- ANTLR Plugin -->
-  <plugin>
-    <groupId>org.antlr</groupId>
-    <artifactId>antlr4-maven-plugin</artifactId>
-    <version>${antlr4-maven-plugin.version}</version>
-    <configuration>
-      <visitor>true</visitor>
-    </configuration>
-    <executions>
-      <execution>
-        <goals>
-          <goal>antlr4</goal>
-        </goals>
-      </execution>
-    </executions>
-  </plugin>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+      </testResource>
+    </testResources>
 
-  <!-- Build Number Plugin -->
-  <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>buildnumber-maven-plugin</artifactId>
-    <version>1.0</version>
-    <executions>
-      <execution>
-        <phase>generate-resources</phase>
-        <goals>
-          <goal>create</goal>
-        </goals>
-      </execution>
-    </executions>
-    <configuration>
-      <doCheck>true</doCheck>
-      <doUpdate>false</doUpdate>
-      <revisionOnScmFailure>false</revisionOnScmFailure>
-      <format>{0,date,yyyy-MM-dd-HH:mm:ss}_{1}</format>
-      <items>
-        <item>timestamp</item>
-        <item>${user.name}</item>
-      </items>
-    </configuration>
-  </plugin>
-
-  <!-- Surefire Plugin (Add This) -->
-  <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-surefire-plugin</artifactId>
-  <version>3.1.2</version>
-  <configuration>
-    <argLine>
-      --add-opens java.base/java.lang=ALL-UNNAMED
-      --add-opens java.base/java.util=ALL-UNNAMED
-      --add-opens java.base/java.io=ALL-UNNAMED
-      --add-opens java.base/java.lang.reflect=ALL-UNNAMED
-    </argLine>
-  </configuration>
-</plugin>
-
-
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
   </build>
-
 </project>
+
+
