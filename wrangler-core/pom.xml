@@ -319,46 +319,60 @@
         <filtering>true</filtering>
       </resource>
     </resources>
-    <plugins>
-      <plugin>
-        <groupId>org.antlr</groupId>
-        <artifactId>antlr4-maven-plugin</artifactId>
-        <version>${antlr4-maven-plugin.version}</version>
-        <configuration>
-          <visitor>true</visitor>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>antlr4</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <version>1.0</version>
-        <executions>
-          <execution>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>create</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <doCheck>true</doCheck>
-          <doUpdate>false</doUpdate>
-          <revisionOnScmFailure>false</revisionOnScmFailure>
-          <format>{0,date,yyyy-MM-dd-HH:mm:ss}_{1}</format>
-          <items>
-            <item>timestamp</item>
-            <item>${user.name}</item>
-          </items>
-        </configuration>
-      </plugin>
-    </plugins>
+  <plugins>
+  <!-- ANTLR Plugin -->
+  <plugin>
+    <groupId>org.antlr</groupId>
+    <artifactId>antlr4-maven-plugin</artifactId>
+    <version>${antlr4-maven-plugin.version}</version>
+    <configuration>
+      <visitor>true</visitor>
+    </configuration>
+    <executions>
+      <execution>
+        <goals>
+          <goal>antlr4</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+
+  <!-- Build Number Plugin -->
+  <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>buildnumber-maven-plugin</artifactId>
+    <version>1.0</version>
+    <executions>
+      <execution>
+        <phase>generate-resources</phase>
+        <goals>
+          <goal>create</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <doCheck>true</doCheck>
+      <doUpdate>false</doUpdate>
+      <revisionOnScmFailure>false</revisionOnScmFailure>
+      <format>{0,date,yyyy-MM-dd-HH:mm:ss}_{1}</format>
+      <items>
+        <item>timestamp</item>
+        <item>${user.name}</item>
+      </items>
+    </configuration>
+  </plugin>
+
+  <!-- Surefire Plugin (Add This) -->
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.1.2</version>
+    <configuration>
+      <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+    </configuration>
+  </plugin>
+</plugins>
+
   </build>
 
 </project>
